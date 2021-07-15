@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -18,5 +18,9 @@ jobs:
         shell: pwsh
         run: |
 $command
-        env:
-          GITHUB_TOKEN: `${{secrets.GITHUB_TOKEN}}
+
+      - name: Commit and push
+        uses: stefanzweifel/git-auto-commit-action@v4.2.0
+        with:
+          commit_message: Results from script run
+          commit_user_name: 'PowerShell Automation'
